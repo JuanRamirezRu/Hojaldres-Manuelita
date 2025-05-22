@@ -17,7 +17,7 @@ def guardar_menu(menu):
         json.dump(menu, f, indent=4, ensure_ascii=False)
 #Selección de modo de uso (administrador/cliente)
 st.sidebar.title("Selección modo de uso")
-modo = st.sidebar.radio("¿Qué deseas hacer?", ["Administrador", "Cliente"])
+modo = st.sidebar.radio("¿Qué deseas hacer?", ["Cliente", "Administrador"])
 
 
 #MODO CLIENTE
