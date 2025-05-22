@@ -20,6 +20,43 @@ st.sidebar.title("Selección modo de uso")
 modo = st.sidebar.radio("¿Qué deseas hacer?", ["Administrador", "Cliente"])
 
 
+#MODO CLIENTE
+elif modo == "Cliente":
+    #Título de la sección
+    st.title("Hojaldres Manuelita")
+    st.header("Menú")
+    #Lectura de datos (verifica los datos guardados del menú)
+    menu = cargar_menu()
+
+    if not menu:
+        st.info("El menú no ha sido definido.")
+    #Filtro de productos
+    else:
+        tipo = st.selectbox("Filtrar por tipo", ["Todos", "Postre", "Hojaldre", "Bebida"])
+        if tipo != "Todos":
+            menu = [p for p in menu if p["Tipo"] == tipo]
+        #Visibilidad del menú (imagen, datos)
+        for producto in menu:
+            col_img, col_datos = st.columns([1, 4])
+
+            with col_img:
+                if producto.get("Imagen") and os.path.exists(producto["Imagen"]):
+                    st.image(producto["Imagen"], width=150)
+                else:
+                    st.write(":camera: Sin imagen")
+
+            with col_datos:
+                descripcion = f"<br><em>{producto['Descripción']}</em>" if producto.get("Descripción") else ""
+                st.markdown(f"""
+                    <div style='font-size:18px'>
+                        <strong>{producto['Nombre']}</strong><br>
+                        Tipo: <em>{producto['Tipo']}</em><br>
+                        Precio: ${producto['Precio']:,.2f}{descripcion}
+                        <hr>
+                    </div>
+                """, unsafe_allow_html=True)
+
+
 #MODO ADMINISTRADOR
 if modo == "Administrador":
     st.subheader("Panel del administrador")
@@ -136,39 +173,3 @@ if modo == "Administrador":
                 st.rerun()
     else:
         st.info("Aún no hay productos en el menú.")
-
-#MODO CLIENTE
-elif modo == "Cliente":
-    #Título de la sección
-    st.title("Hojaldres Manuelita")
-    st.header("Menú")
-    #Lectura de datos (verifica los datos guardados del menú)
-    menu = cargar_menu()
-
-    if not menu:
-        st.info("El menú no ha sido definido.")
-    #Filtro de productos
-    else:
-        tipo = st.selectbox("Filtrar por tipo", ["Todos", "Postre", "Hojaldre", "Bebida"])
-        if tipo != "Todos":
-            menu = [p for p in menu if p["Tipo"] == tipo]
-        #Visibilidad del menú (imagen, datos)
-        for producto in menu:
-            col_img, col_datos = st.columns([1, 4])
-
-            with col_img:
-                if producto.get("Imagen") and os.path.exists(producto["Imagen"]):
-                    st.image(producto["Imagen"], width=150)
-                else:
-                    st.write(":camera: Sin imagen")
-
-            with col_datos:
-                descripcion = f"<br><em>{producto['Descripción']}</em>" if producto.get("Descripción") else ""
-                st.markdown(f"""
-                    <div style='font-size:18px'>
-                        <strong>{producto['Nombre']}</strong><br>
-                        Tipo: <em>{producto['Tipo']}</em><br>
-                        Precio: ${producto['Precio']:,.2f}{descripcion}
-                        <hr>
-                    </div>
-                """, unsafe_allow_html=True)
