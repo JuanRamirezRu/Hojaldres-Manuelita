@@ -21,7 +21,7 @@ modo = st.sidebar.radio("¿Qué deseas hacer?", ["Administrador", "Cliente"])
 
 
 #MODO CLIENTE
-elif modo == "Cliente":
+if modo == "Cliente":
     #Título de la sección
     st.title("Hojaldres Manuelita")
     st.header("Menú")
@@ -58,7 +58,7 @@ elif modo == "Cliente":
 
 
 #MODO ADMINISTRADOR
-if modo == "Administrador":
+elif modo == "Administrador":
     st.subheader("Panel del administrador")
     #Solicitud de contraseña
     password = st.sidebar.text_input("Contraseña", type="password")
