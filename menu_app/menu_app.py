@@ -83,8 +83,13 @@ elif modo == "Administrador":
         if enviar and nombre.strip():
             ruta_imagen = ""
             if imagen:
+                # Crear carpeta 'imagenes' si no existe
+                if not os.path.exists("imagenes"):
+                    os.makedirs("imagenes")
+                
                 nombre_archivo = f"{nombre.strip().replace(' ', '_').lower()}.{imagen.type.split('/')[-1]}"
                 ruta_imagen = f"imagenes/{nombre_archivo}"
+                
                 with open(ruta_imagen, "wb") as f:
                     f.write(imagen.getbuffer())
 
