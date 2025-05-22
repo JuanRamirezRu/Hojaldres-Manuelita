@@ -32,7 +32,7 @@ if modo == "Cliente":
         st.info("El menú no ha sido definido.")
     #Filtro de productos
     else:
-        tipo = st.selectbox("Filtrar por tipo", ["Todos", "Postre", "Hojaldre", "Bebida"])
+        tipo = st.selectbox("Filtrar por tipo", ["Todos", "Bebida caliente", "Bebida fría", "Postre", "Hojaldre", "Otros"])
         if tipo != "Todos":
             menu = [p for p in menu if p["Tipo"] == tipo]
         #Visibilidad del menú (imagen, datos)
@@ -74,7 +74,7 @@ elif modo == "Administrador":
     #Formulario para ingresar productos
     with st.form("formulario_producto"):
         nombre = st.text_input("Nombre del producto")
-        tipo = st.selectbox("Tipo", ["Postre", "Hojaldre", "Bebida"])
+        tipo = st.selectbox("Tipo", ["Bebida caliente", "Bebida fría", "Postre", "Hojaldre", "Otros"])
         precio = st.number_input("Precio ($)", min_value=0.0, format="%.2f")
         descripcion = st.text_area("Descripción del producto (opcional)")
         imagen = st.file_uploader("Imagen del producto", type=["png", "jpg", "jpeg"])
