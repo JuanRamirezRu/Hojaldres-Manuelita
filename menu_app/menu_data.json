@@ -1,0 +1,23 @@
+[
+    {
+        "Nombre": "Capuccino",
+        "Tipo": "Bebida",
+        "Precio": 6500.0,
+        "Imagen": "imagenes/capuccino.jpeg",
+        "Descripción": "Un tercio de expreso, un tercio de leche y un tercio de leche cremada. <3"
+    },
+    {
+        "Nombre": "pastel de pollo",
+        "Tipo": "Hojaldre",
+        "Precio": 4500.0,
+        "Imagen": "imagenes/pastel_de_pollo.jpeg",
+        "Descripción": "hojaldre  con pollo"
+    },
+    {
+        "Nombre": "tinto",
+        "Tipo": "Bebida",
+        "Precio": 2800.0,
+        "Imagen": "imagenes/tinto.jpeg",
+        "Descripción": "Café con agua"
+    }
+]
